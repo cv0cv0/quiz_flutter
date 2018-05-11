@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
+import './quiz_page.dart';
+
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Material(
         color: Colors.greenAccent,
         child: InkWell(
-          onTap: () => print('We tapped the page!'),
+          onTap: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => QuizPage(),
+                ),
+              ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

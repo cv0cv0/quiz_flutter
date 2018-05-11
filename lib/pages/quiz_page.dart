@@ -4,6 +4,8 @@ import '../widget/answer_button.dart';
 import '../widget/question_text.dart';
 import '../widget/correct_wrong_overlay.dart';
 
+import 'score_page.dart';
+
 import '../model/question.dart';
 import '../model/quiz.dart';
 
@@ -49,6 +51,16 @@ class _QuizPageState extends State<QuizPage> {
               ? CorrectWrongOverlay(
                   isCorrect,
                   () {
+                    if (questionNumber == quiz.length) {
+                      Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ScorePage(quiz.score, quiz.length),
+                            ),
+                          );
+                      return;
+                    }
+
                     currentQuestion = quiz.nextQuestion;
                     setState(() {
                       overlayShouldBeVisible = false;
